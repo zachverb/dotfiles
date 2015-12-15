@@ -11,9 +11,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " custom plugins
-
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+
+Plugin 'Raimondi/delimitMate'
 
 Plugin 'scrooloose/nerdtree'
 
@@ -29,6 +31,14 @@ filetype plugin indent on    " required
 
 " Turn on syntax highlighting
 syntax on
+
+" tabs as spaces
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+" Allow JSX in normal JS files
+let g:jsx_ext_required = 0 
 
 " NerdTree bind
 map <C-n> :NERDTreeToggle<CR>

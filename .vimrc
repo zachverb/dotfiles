@@ -39,6 +39,8 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
+set number
+
 " Turn on syntax highlighting
 syntax on
 

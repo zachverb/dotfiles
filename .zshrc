@@ -107,10 +107,6 @@ alias sm='emacs'
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home)
-export EC2_HOME=~/ec2-api-tools-1.7.2.2
-export PATH=$PATH:$EC2_HOME/bin
-export AWS_ACCESS_KEY=AKIAIYCQ2HLN3ZHHE66Q
-export AWS_SECRET_KEY=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
 export ANDROID_NDK=~/android-ndk-r10e
 export ANDROID_HOME=/usr/local/opt/android-sdk
 

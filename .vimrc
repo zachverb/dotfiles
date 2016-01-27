@@ -50,6 +50,10 @@ set number
 " refresh on file change on disk
 set autoread
 
+" store swp files and temp files in system tmpdir
+set backupdir=$TMPDIR//
+set directory=$TMPDIR//
+
 " disable arrow keys
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>

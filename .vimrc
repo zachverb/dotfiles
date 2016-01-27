@@ -11,23 +11,44 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " custom plugins
+
+" Language specific
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-
 Plugin 'Raimondi/delimitMate'
 
+" workflow specific
+Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'yosiat/oceanic-next-vim'
+Plugin 'djoshea/vim-autoread'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
+
+" Turn on syntax highlighting
+syntax on
+
+" tabs as spaces
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+" line nums
+set number
+
+" refresh on file change on disk
+set autoread
 
 " disable arrow keys
 inoremap  <Up>     <NOP>
@@ -39,15 +60,6 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
-set number
-
-" Turn on syntax highlighting
-syntax on
-
-" tabs as spaces
-set expandtab
-set tabstop=2
-set shiftwidth=2
 
 " Allow JSX in normal JS files
 let g:jsx_ext_required = 0 
@@ -65,9 +77,18 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close Vim when it's the only window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Visual Customization
- colorscheme OceanicNext
+" nerdtree tabs on startup
+let g:nerdtree_tabs_open_on_console_startup=1
 
+" Visual Customization
+set t_Co=256
+colorscheme OceanicNext
+
+" Mapping line splitting w/ delimit
+imap <C-c> <CR><Esc>O
+
+" linting
+let g:syntastic_javascript_checkers = ['eslint']
 
 "
 " Brief help

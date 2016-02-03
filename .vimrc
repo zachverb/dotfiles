@@ -44,6 +44,9 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
+" fix backspace
+set backspace=2
+
 " line nums
 set number
 
@@ -93,6 +96,9 @@ imap <C-c> <CR><Esc>O
 
 " linting
 let g:syntastic_javascript_checkers = ['eslint']
+
+" ctrlp ignore
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 "
 " Brief help

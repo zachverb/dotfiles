@@ -24,6 +24,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'christoomey/vim-tmux-navigator'
 

@@ -1,5 +1,10 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/zacharyverbeck/.oh-my-zsh
+export ZSH=~/dotfiles/.oh-my-zsh
+export TERM="screen-256color"
+export PATH=$(brew --prefix)/sbin:$(brew --prefix)/bin:$PATH:$HOME/bin
+
+alias sublime="open -a 'Sublime Text'"
+alias tmux="TERM=screen-256color-bce tmux"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -50,7 +55,7 @@ DEFAULT_USER="zacharyverbeck"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, osx)
+plugins=(git osx vi-mode tmux)
 
 # User configuration
 
@@ -83,38 +88,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export RBENV_ROOT="$HOME/.rbenv" 
-if [ -d $RBENV_ROOT ]; then
-  export PATH="$RBENV_ROOT/bin:$PATH"
-  eval "$(rbenv init -)"
-fi
 
-start() {
-	open ~/Desktop/minecraft_server/start.command
-	open Minecraft
-}
-
-alias klaatu='ssh -o PreferredAuthentications=password zgv@klaatu.cs.washington.edu'
-
-alias hlog='heroku logs --tail'
-
-alias sync-upstream='rsync -av --exclude='node_modules' --exclude='.git' --exclude='.env' ~/dev/capstone/Loop\ Space\ Server/ ec2:Loop-Space-Server'
-
-alias sync-portfolio='rsync -av --exclude='node_modules' --exclude='.git' --exclude='.env' ~/dev/portfoliosite do:portfolio'
-
-alias sm='emacs'
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export JAVA_HOME=$(/usr/libexec/java_home)
-export ANDROID_NDK=~/android-ndk-r10e
-export ANDROID_HOME=/usr/local/opt/android-sdk
-
-##
-# Your previous /Users/zacharyverbeck/.bash_profile file was backed up as /Users/zacharyverbeck/.bash_profile.macports-saved_2015-12-06_at_22:19:59
-##
-
-# MacPorts Installer addition on 2015-12-06_at_22:19:59: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
+source ~/.uprofile

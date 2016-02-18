@@ -1,5 +1,3 @@
-My standard set of dotfiles. For now, it's just a vanilla tmux configuration file.
+My standard set of dotfiles. For now, it's just small vim/tmux config files and setup.sh.
 
-For Vim-style copy+pasting, install reattach-to-user-namespace.
 
-On OSX, run ```brew install reattach-to-user-namespace```

@@ -21,10 +21,11 @@ Plugin 'Raimondi/delimitMate'
 " workflow specific
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rking/ag.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
 

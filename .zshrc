@@ -61,7 +61,7 @@ plugins=(git osx vi-mode tmux)
 
 # User configuration
 
-export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/heroku/bin:/Users/zacharyverbeck/.rbenv/shims:/Users/zacharyverbeck/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/texbin:/Users/zacharyverbeck/ec2-api-tools-1.7.2.2/bin"
+# export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/heroku/bin:/Users/zacharyverbeck/.rbenv/shims:/Users/zacharyverbeck/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/texbin:/Users/zacharyverbeck/ec2-api-tools-1.7.2.2/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh

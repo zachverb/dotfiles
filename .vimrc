@@ -30,6 +30,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'yosiat/oceanic-next-vim'
 Plugin 'djoshea/vim-autoread'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -99,7 +100,7 @@ imap <C-c> <CR><Esc>O
 let g:syntastic_javascript_checkers = ['eslint']
 
 " ctrlp ignore
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
 
 "
 " Brief help

@@ -7,3 +7,8 @@ In order to install, run
 3. `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 4. `chmod a+x ~/dotfiles/setup.sh && ~/dotfiles/setup.sh`
 
+Enjoy!
+
+A few things to note:
+* Create your own file called uprofile inside of the dotfiles folder to add your own personal zsh configuration
+* Make your own configurations to [tmux-powerline segments](https://github.com/erikw/tmux-powerline#segment-requirements) for extra fun

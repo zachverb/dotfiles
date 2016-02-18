@@ -13,6 +13,8 @@ alias tmux="TERM=screen-256color-bce tmux"
 ZSH_THEME="agnoster"
 DEFAULT_USER="zacharyverbeck"
 
+source ~/.uprofile
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -89,4 +91,3 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.uprofile

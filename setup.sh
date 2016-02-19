@@ -1,14 +1,14 @@
 #! /bin/bash
 BACKUP_OLD_DOT_FILES_FOLDER=~/olddotfiles
 DOT_FILES_FOLDER="~/dotfiles"
-DOT_FILES_AND_FOLDERS="vimrc tmux.conf zshrc uprofile oh-my-zsh"
+DOT_FILES_AND_FOLDERS="gitconfig vimrc tmux.conf zshrc uprofile oh-my-zsh"
 
 echo "Backing up old dot files in $BACKUP_OLD_DOT_FILES_FOLDER"
 mkdir "$BACKUP_OLD_DOT_FILES_FOLDER"
 for dot_file in $DOT_FILES_AND_FOLDERS
 do
   if [ -e ~/.$dot_file ];then
-    move_cmd="mv -v ~/$dot_file $BACKUP_OLD_DOT_FILES_FOLDER"
+    move_cmd="mv -v ~/.$dot_file $BACKUP_OLD_DOT_FILES_FOLDER"
     eval $move_cmd
   fi
 done

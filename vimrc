@@ -103,6 +103,11 @@ let g:syntastic_javascript_checkers = ['eslint']
 " ctrlp ignore
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
 
+let $LOCALFILE=expand("~/.vimrc_local")
+if filereadable($LOCALFILE)
+  source $LOCALFILE
+endif
+
 "
 " Brief help
 " :PluginList       - lists configured plugins

@@ -1,7 +1,13 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export TERM="screen-256color"
-export PATH=$(brew --prefix)/sbin:$(brew --prefix)/bin:$PATH:$HOME/bin
+
+if [ -z "$TMPDIR" ]; then
+  if [ ! -d ~/tmpdir ]; then
+    mkdir ~/tmpdir
+  fi
+  export TMPDIR=~/tmpdir
+fi
 
 alias sublime="open -a 'Sublime Text'"
 alias tmux="TERM=screen-256color-bce tmux"

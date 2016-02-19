@@ -13,7 +13,9 @@ alias tmux="TERM=screen-256color-bce tmux"
 ZSH_THEME="agnoster"
 DEFAULT_USER="zacharyverbeck"
 
-source ~/.uprofile
+if [ -f ~/.zshrc_local ]; then
+  source ~/.zshrc_local
+fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

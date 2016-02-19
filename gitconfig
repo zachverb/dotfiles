@@ -1,0 +1,5 @@
+[user]
+	name = zachverb
+	email = zverbeck@uber.com
+[include]
+  path = ~/.gitconfig_local

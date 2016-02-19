@@ -17,7 +17,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
-DEFAULT_USER="zacharyverbeck"
+DEFAULT_USER="uber"
 
 source ~/.uprofile
 

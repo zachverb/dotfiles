@@ -52,6 +52,7 @@ set backspace=2
 
 " line nums
 set number
+set ruler
 
 " refresh on file change on disk
 set autoread
@@ -79,18 +80,12 @@ let g:jsx_ext_required = 0
 " NerdTree bind
 map <C-n> :NERDTreeToggle<CR>
 
-" Automatically open NERDTree
-autocmd vimenter * NERDTree
-
 " Automatically open NERDTree when vim starts without files selected
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Close Vim when it's the only window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" nerdtree tabs on startup
-let g:nerdtree_tabs_open_on_console_startup=1
 
 " Visual Customization
 set t_Co=256

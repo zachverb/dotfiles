@@ -52,6 +52,7 @@ set backspace=2
 
 " line nums
 set number
+set ruler
 
 " refresh on file change on disk
 set autoread

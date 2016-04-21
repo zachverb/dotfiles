@@ -66,6 +66,9 @@ plugins=(git osx vi-mode tmux)
 # export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/heroku/bin:/Users/zacharyverbeck/.rbenv/shims:/Users/zacharyverbeck/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/texbin:/Users/zacharyverbeck/ec2-api-tools-1.7.2.2/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+export GOPATH="$HOME/gocode"
+export PATH="$PATH:$GOPATH/bin"
+
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment

@@ -13,10 +13,17 @@ Plugin 'VundleVim/Vundle.vim'
 " custom plugins
 
 " Language specific
+Plugin 'Raimondi/delimitMate'
+
+"" Javascript
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'Raimondi/delimitMate'
+Plugin 'ternjs/tern_for_vim'
+
+"" Go
+Plugin 'fatih/vim-go'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 " workflow specific
 Plugin 'scrooloose/syntastic'
@@ -105,6 +112,17 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 " ctrlp ignore
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
+
+" Go settings
+let g:go_fmt_command = "goimports"
+
+" GoDef options
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+" YCM
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let $LOCALFILE=expand("~/.vimrc_local")
 if filereadable($LOCALFILE)

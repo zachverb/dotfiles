@@ -16,7 +16,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Raimondi/delimitMate'
 
 "" Javascript
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'ternjs/tern_for_vim'
@@ -37,6 +36,8 @@ Plugin 'rking/ag.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'yosiat/oceanic-next-vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'othree/yajs.vim'
 Plugin 'djoshea/vim-autoread'
 Plugin 'tpope/vim-fugitive'
 
@@ -107,14 +108,27 @@ colorscheme OceanicNext
 " Mapping line splitting w/ delimit
 imap <C-c> <CR><Esc>O
 
+" save faster
+nnoremap ;w :w<CR>
+
+" indent faster
+vnoremap < <gv
+vnoremap > >gv
+
 " linting
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_Map = { 'mode': 'active', 'passive_filetypes': ['go']}
 
 " ctrlp ignore
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
 
 " Go settings
 let g:go_fmt_command = "goimports"
+
+" GoImports bind
+map <C-i><C-i> :GoImports<CR>
+map <C-i><C-r> :GoRun<CR>
 
 " GoDef options
 au FileType go nmap <Leader>ds <Plug>(go-def-split)

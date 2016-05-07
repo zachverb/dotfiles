@@ -101,6 +101,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " nerdtree tabs on startup
 let g:nerdtree_tabs_open_on_console_startup=1
 
+" Column for max line length
+set colorcolumn=120
+
 " Visual Customization
 set t_Co=256
 colorscheme OceanicNext

@@ -33,6 +33,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rking/ag.vim'
 Plugin 'christoomey/vim-sort-motion'
+Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
@@ -112,12 +114,20 @@ colorscheme OceanicNext
 " Mapping line splitting w/ delimit
 imap <C-c> <CR><Esc>O
 
+" Natural splits
+set splitbelow
+set splitright
+
 " save faster
 nnoremap ;w :w<CR>
 
 " indent faster
 vnoremap < <gv
 vnoremap > >gv
+
+" resize faster
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " linting
 let g:syntastic_javascript_checkers = ['eslint']
@@ -129,6 +139,12 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
 
 " Go settings
 let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " GoImports bind
 map <C-i><C-i> :GoImports<CR>
@@ -138,6 +154,14 @@ map <C-i><C-r> :GoRun<CR>
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<c-T>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " YCM
 let g:ycm_autoclose_preview_window_after_insertion = 1

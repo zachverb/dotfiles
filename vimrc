@@ -19,6 +19,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'ternjs/tern_for_vim'
+Plugin 'bentayloruk/vim-react-es6-snippets'
+Plugin 'moll/vim-node'
 
 "" Go
 Plugin 'fatih/vim-go'
@@ -31,18 +33,23 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'christoomey/vim-sort-motion'
-Plugin 'honza/vim-snippets'
+
+" snippets
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Bundle 'ervandew/supertab'
 
 Plugin 'christoomey/vim-tmux-navigator'
-
+  
 Plugin 'yosiat/oceanic-next-vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'othree/yajs.vim'
 Plugin 'djoshea/vim-autoread'
 Plugin 'tpope/vim-fugitive'
+
+Plugin 'lfilho/cosco.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -135,7 +142,7 @@ let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_Map = { 'mode': 'active', 'passive_filetypes': ['go']}
 
 " ctrlp ignore
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist\|vendor\|env_docs'
 
 " Go settings
 let g:go_fmt_command = "goimports"
@@ -146,32 +153,48 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" GoImports bind
-map <C-i><C-i> :GoImports<CR>
-map <C-i><C-r> :GoRun<CR>
-
 " GoDef options
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 " ultisnips
-let g:UltiSnipsExpandTrigger="<c-T>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" Python version
+let g:UltiSnipsUsePythonVersion = 2
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
 " YCM
 let g:ycm_autoclose_preview_window_after_insertion = 1
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<tab>'
+
+let g:UltiSnipsExpandTrigger = "<F6>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let $LOCALFILE=expand("~/.vimrc_local")
 if filereadable($LOCALFILE)
   source $LOCALFILE
 endif
 
-"
+" GoImports bind
+map <C-i><C-i> :GoCoverage<CR>
+map <C-i><C-x> :GoCoverageClear<CR>"
+map <C-i><C-t> :GoTest<CR>"
+
+" Ack -> Ag
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+cnoreabbrev ag Ack                                                                           
+cnoreabbrev aG Ack                                                                           
+cnoreabbrev Ag Ack                                                                           
+cnoreabbrev AG Ack  
+
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate

@@ -3,3 +3,5 @@
 	email = zverbeck@uber.com
 [include]
   path = ~/.gitconfig_local
+[url "ssh://gitolite@code.uber.internal:2222/"]
+	insteadOf = https://code.uber.internal/

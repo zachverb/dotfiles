@@ -1,0 +1,241 @@
+#
+# React snippets
+#
+
+snippet cls "jsx component" b
+import React, {Component, PropTypes} from 'react';
+
+const propTypes = {
+
+};
+
+class ${2:ComponentName} extends Component {
+	render() {
+		return (
+			<div>
+				{VISUAL}
+			</div>
+		);
+	}
+}
+$2.propTypes = propTypes;
+
+export default $2;
+endsnippet
+
+snippet ccls "connected jsx component" b
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+const propTypes = {
+
+};
+
+export class ${1:ClassName} extends Component {
+	render() {
+		return (
+			${0}
+		);
+	}
+}
+
+function mapStateToProps(state) {
+	return {};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {};
+}
+
+$1.propTypes = propTypes;
+export default connect(mapStateToProps, mapDispatchToProps)($1);
+endsnippet
+
+snippet propt "One PropType definition" b
+${1}: PropTypes.${2:string},
+endsnippet
+
+snippet con "constructor" b
+	constructor(props) {
+		super(props);
+		${0}
+	}
+endsnippet
+
+snippet thnk "redux action" b
+function ${1:funcName}(${2:params}) {
+	return (dispatch, getState) => {
+		${0}
+	};
+}
+endsnippet
+
+snippet eql "tape assert equals" b
+t.${1:equal}(
+	${2:actual},
+	${3:expected},
+	'${4:msg}'
+);
+endsnippet
+
+snippet leql "tape assert  looseEquals" b
+t.looseEqual(
+	${1:actual},
+	${2:expected},
+	'${3:msg}'
+);
+endsnippet
+
+snippet diseql "tape assert dispatch equal" b
+t.looseEqual(
+	dispatchStub.getCall(${2:callNum}).args[0],
+	{
+		payload: ${3:payload},
+		type: ${4:ACTION_TYPE},
+	},
+	'should emit $4 action with ${VISUAL}'
+);
+endsnippet
+
+snippet seql "tape assert stub" b
+t.looseEqual(
+	${1:stubName}Stub.getCall(${2:callNum}).args${3:[0]},
+	${4:{}},
+	'calling $1 should emit'
+);
+endsnippet
+
+snippet tstub "stub for trips" b
+var trips = require('web-mondays/test/fixtures/initech/get-trips.json');
+var P = require('bluebird');
+return P.resolve(trips);
+endsnippet
+
+#
+# Test snippets
+#
+
+snippet test "tape test case" b
+test('${1:ModuleName}#${2:method} - ${3:test case}', function assert(t) {
+	var ${4:fixtures} = setup({${5:options}});
+	${VISUAL}$6
+	teardown($4);
+	t.end();
+});
+endsnippet
+
+snippet stubm "sandbox method stub" b
+var ${1:methodName}Stub = sandbox.stub(${2:location}, '$1');
+endsnippet
+
+snippet stube "sandbox empty stub" b
+var ${1:methodName}Stub = sandbox.stub();
+endsnippet
+
+snippet tests "vanilla test scaffold" b
+'use strict';
+
+var test = require('tape');
+var sandbox = require('sinon').sandbox.create();
+var ${1:module} = require('${2:file}');
+
+function setup(options) {
+	options = options || {};
+}
+
+function teardown() {
+	sandbox.restore();
+}
+
+endsnippet
+
+snippet testr "react test scaffold" b
+'use strict';
+
+var test = require('tape');
+var sandbox = require('sinon').sandbox.create();
+var React = require('react');
+var mount = require('enzyme').mount;
+var ${1:component} = require('${2:filename}');
+var _ = require('underscore');
+
+function setup(options) {
+	options = options || {};
+
+	var defaultProps = {
+
+	};
+
+	var props = _.extend({}, defaultProps, options.props);
+
+	return mount(React.createElement($1, props));
+}
+
+function teardown(component) {
+	component.unmount();
+	sandbox.restore();
+}
+
+endsnippet
+
+snippet tt "table test" b
+var tableTest = [{
+	input: ${1:input},
+	output: ${2:output},
+}];
+tableTest.map(function runtest(tt) {
+	var result = ${3:methodName}(${4:tt.input}${5:, otherParams});
+	${6:assertion}
+});
+endsnippet
+
+#
+#	Redux snippets
+#
+
+snippet action "redux createAction" b
+export const ${1:actionName} = createAction(`!p
+def convertToScreamingSnakeCase(name):
+	s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+	return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).upper()
+snip.rv = convertToScreamingSnakeCase(t[1])`);
+endsnippet
+
+snippet req "request" b
+var ${1:module} = require('${2:path}/`!p
+def convertToDash(name):
+	s1 = re.sub('(.)([A-Z][a-z]+)', r'\1-\2', name)
+	return re.sub('([a-z0-9])([A-Z])', r'\1-\2', s1).lower()
+snip.rv = convertToDash(t[1])`');
+endsnippet
+
+snippet reqes6
+var ${1:module} = require('${2:path}/`!p
+def convertToDash(name):
+	s1 = re.sub('(.)([A-Z][a-z]+)', r'\1-\2', name)
+	return re.sub('([a-z0-9])([A-Z])', r'\1-\2', s1).lower()
+snip.rv = convertToDash(t[1])`.es6');
+endsnippet
+
+snippet wmdj "web-mondays javascripts path" i
+web-mondays/client/javascripts
+endsnippet
+
+snippet wmdc "web-mondays components path" i
+web-mondays/client/javascripts/components
+endsnippet
+
+snippet wmdr "web-mondays redux path" i
+web-mondays/client/javascripts/redux
+endsnippet
+
+snippet wmdra "web-mondays redux actions" i
+web-mondays/client/javascripts/redux/actions
+endsnippet
+
+snippet scwmf "stub clients web-mainframe" b
+if (env === 'development') {
+	require('../test/server/fixtures/fake-clients')(server);
+}
+endsnippet

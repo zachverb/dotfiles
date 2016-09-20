@@ -1,0 +1,53 @@
+#
+# test
+#
+
+snippet eql "assert equal" b
+assert.${1:Equal}(t, ${2: expected}, ${3: actual})
+endsnippet
+
+snippet test "test function" b
+func Test_${1:MethodName}_${2:case}(t *testing.T) {
+	${VISUAL}$4
+	$1(${5:params})
+}
+endsnippet
+
+snippet tt "table test" b
+${1:tabletests} := []struct{
+	in ${2:InType}
+	out ${3:OutType}
+}{
+	
+}
+
+for _, tt := range $1 {
+	actual := ${4:MethodName}(tt.out${5:, otherParams})
+	assert.EqualValues(t, tt.out, actual)
+}
+endsnippet
+
+snippet ttc "table test case" b
+{
+	${1:in},
+	${2:out},
+},
+endsnippet
+
+#
+# Logging
+#
+
+snippet log "log with fields" b
+log.WithFields(bark.Fields{
+	${4:field}
+}).${2:Info}("${3:msg}");
+endsnippet
+
+snippet lf "log bark field" b
+"${1:field}": ${2:value},
+endsnippet
+
+snippet lsf "log same field" b
+"${1:field}": $1,
+endsnippet

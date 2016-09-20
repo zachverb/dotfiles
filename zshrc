@@ -5,6 +5,8 @@ export PATH=$(brew --prefix)/sbin:$(brew --prefix)/bin:$PATH:$HOME/bin
 
 alias sublime="open -a 'Sublime Text'"
 alias tmux="TERM=screen-256color-bce tmux"
+alias n="nvim"
+alias vim="nvim"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/

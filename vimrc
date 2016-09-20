@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Language specific
 Plug 'Raimondi/delimitMate'
@@ -15,7 +15,6 @@ Plug 'moll/vim-node'
 
 "" Go
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'nsf/gocode', {'rtp': 'vim/'}
 
 " Thrift
 Plug 'solarnz/thrift.vim'
@@ -44,6 +43,7 @@ Plug 'djoshea/vim-autoread'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-expand-region'
 Plug 'bling/vim-airline'
+Plug 'tpope/vim-surround'
 
 Plug 'lfilho/cosco.vim'
 
@@ -92,9 +92,7 @@ let mapleader = "\<Space>"
 let g:jsx_ext_required = 1
 
 " NerdTree bind
-map <C-n> :NERDTreeToggle<CR>
-
-
+map <C-n> :NERDTreeTabsToggle<CR>
 
 " Automatically open NERDTree when vim starts without files selected
 autocmd StdinReadPre * let s:std_in=1
@@ -106,7 +104,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " nerdtree tabs on startup
 let g:nerdtree_tabs_open_on_console_startup=1
 
-" nerd commenter add space
+" nerdcommenter add space
 let g:NERDSpaceDelims = 1
 
 
@@ -120,14 +118,14 @@ colorscheme OceanicNext
 " Mapping line splitting w/ delimit
 imap <C-c> <CR><Esc>O
 
-set showcmd
-
 " Natural splits
 set splitbelow
 set splitright
 
 " copy mac
 set clipboard=unnamed
+
+set showcmd
 
 " save faster
 nnoremap ;w :w<CR>
@@ -144,11 +142,14 @@ vnoremap > >gv
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
+" file type
+autocmd BufNewFile,BufRead *.jsx,*.es6.js let b:jsx_ext_found = 1
+autocmd BufNewFile,BufRead *.jsx,*.es6.js set filetype=javascript.jsx
+
 " linting
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_Map = { 'mode': 'active', 'passive_filetypes': ['go']}
-
 autocmd FileType javascript let b:syntastic_javascript_eslint_args = '-c .eslintrc'
 autocmd FileType javascript.jsx let b:syntastic_javascript_eslint_args = '-c .eslintrc-jsx'
 
@@ -217,5 +218,5 @@ let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
-
+set laststatus=2
 

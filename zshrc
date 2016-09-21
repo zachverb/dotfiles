@@ -1,12 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
-export TERM="screen-256color"
 export PATH=$(brew --prefix)/sbin:$(brew --prefix)/bin:$PATH:$HOME/bin
-
+alias tmux='tmux -2'  # for 256color
+alias tmux='tmux -u'  # to get rid of unicode rendering problem
 alias sublime="open -a 'Sublime Text'"
-alias tmux="TERM=screen-256color-bce tmux"
 alias n="nvim"
-alias vim="nvim"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -99,6 +97,7 @@ alias adh="arc diff HEAD^"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

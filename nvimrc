@@ -15,6 +15,7 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
+imap <C-c> <CR><Esc>O
 
 set showcmd             " Show (partial) command in status line.
 set showmatch           " Show matching brackets.
@@ -33,6 +34,8 @@ set linespace=0         " Set line-spacing to minimum.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 set nohlsearch          " Don't highlight the search
 set incsearch
+set backupdir=$TMPDIR// " store swp files and temp files in system tmpdir
+set directory=$TMPDIR//
 if &listchars ==# 'eol:$'
   set listchars=trail:-,extends:>,precedes:<,nbsp:+
 endif
@@ -76,21 +79,21 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'scrooloose/nerdcommenter'
     let g:NERDSpaceDelims = 1
 " Syntax
-" Snippets
-  Plug 'SirVer/ultisnips'
-  " Ultisnips
-    " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
-    let g:UltiSnipsExpandTrigger = "<F6>"
-    let g:UltiSnipsJumpForwardTrigger = "<tab>"
-    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-    let g:UltiSnipsSnippetsDir = "~/dotfiles/UltiSnips"
+  Plug 'ervandew/supertab'
+  let g:SuperTabDefaultCompletionType = "<c-n>" " Make the tabing on completion menu go from top to bottom
+  let g:SuperTabClosePreviewOnPopupClose = 1 " Close the preview when completion ends
 
+" Snippets
+    Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
   " Sleuth - automatically figure out indent
     Plug 'tpope/vim-sleuth'
   " Delimate
     Plug 'Raimondi/delimitMate'
+
+" Neosnippet
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
 
 " Code Completion
   " Deoplete
@@ -98,26 +101,27 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Shougo/neoinclude.vim'
       let g:deoplete#enable_at_startup = 1
       " <Tab> completion:
-      " 1. If popup menu is visible, select and insert next item
-      " 2. Otherwise, if within a snippet, jump to next input
-      " 3. Otherwise, if preceding chars are whitespace, insert tab char
-      " 4. Otherwise, start manual autocomplete
-      " imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
-        " \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
-        " \ : (<SID>is_whitespace() ? "\<Tab>"
-        " \ : deoplete#mappings#manual_complete()))
+        " 1. If popup menu is visible, select and insert next item
+        " 2. Otherwise, if within a snippet, jump to next input
+        " 3. Otherwise, if preceding chars are whitespace, insert tab char
+        " 4. Otherwise, start manual autocomplete
+        imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
+          \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
+          \ : (<SID>is_whitespace() ? "\<Tab>"
+          \ : deoplete#mappings#manual_complete()))
 
-      " smap <silent><expr><Tab> pumvisible() ? "\<C-n>"
-        " \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
-        " \ : (<SID>is_whitespace() ? "\<Tab>"
-        " \ : deoplete#mappings#manual_complete()))
+        smap <silent><expr><Tab> pumvisible() ? "\<C-n>"
+          \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
+          \ : (<SID>is_whitespace() ? "\<Tab>"
+          \ : deoplete#mappings#manual_complete()))
 
-      " inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<C-h>"
+        inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
-      " function! s:is_whitespace() "{{{
-        " let col = col('.') - 1
-        " return ! col || getline('.')[col - 1] =~? '\s'
-      " endfunction "}}}
+        function! s:is_whitespace() "{{{
+          let col = col('.') - 1
+          return ! col || getline('.')[col - 1] =~? '\s'
+        endfunction "}}}
+
 
 " Go
   Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -140,28 +144,53 @@ call plug#begin('~/.config/nvim/plugged')
     map <C-i><C-t> :GoTest<CR>"
 
 " search better
-  Plug 'ctrlpvim/ctrlp.vim'
-  let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist\|vendor\|env_docs'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+    fun! s:fzf_root()
+      let path = finddir(".git", expand("%:p:h").";")
+      return fnamemodify(substitute(path, ".git", "", ""), ":p:h")
+    endfun
+    let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+    nnoremap <C-p> :exe 'Files ' . <SID>fzf_root()<CR>
+    nnoremap <silent> <leader>a :Buffers<CR>
+    nnoremap <silent> <leader>A :Windows<CR>
+    nnoremap <silent> <leader>; :BLines<CR>
+    nnoremap <silent> <leader>. :Lines<CR>
+    nnoremap <silent> <leader>b :BTags<CR>
+    nnoremap <silent> <leader>t :Tags<CR>
+    nnoremap <silent> <leader>? :History<CR>
+    nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+    nnoremap <silent> K :call SearchWordWithAg()<CR>
+    vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+    nnoremap <silent> <leader>gl :Commits<CR>
+    nnoremap <silent> <leader>ga :BCommits<CR>
+    nnoremap <silent> <leader>ft :Filetypes<CR>
+
+    imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+    imap <C-x><C-l> <plug>(fzf-complete-line)
+
+    function! SearchWordWithAck()
+      execute 'Ack' expand('<cword>')
+    endfunction
 
 " Javascript
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'elzr/vim-json'
-  Plug 'carlitux/deoplete-ternjs'
+  Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] , 'do': 'npm i' }
+  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+  Plug 'moll/vim-node'
 
 " Linting
 " Neomake
   Plug 'benekastah/neomake'
-  autocmd! BufWritePost * Neomake
-  autocmd! FileType javascript let g:neomake_javascript_eslint_maker = {'args': ['-c .eslintrc']}
-  autocmd! FileType javascript.jsx let g:neomake_javascript_eslint_maker = {'args': ['-c .eslintrc-jsx']}
-  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-  " autocmd InsertChange,TextChanged * update | Neomake
-  let g:neomake_open_list = 2
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_go_enabled_makers = ['golint', 'govet', 'errcheck']
-
-
+    " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+    autocmd InsertChange,TextChanged * update | Neomake
+    let g:neomake_javascript_enabled_makers = ['eslint']
+    let g:neomake_go_enabled_makers = ['golint', 'govet']
+    autocmd! BufWritePost,BufEnter * Neomake
+    autocmd! FileType javascript let b:neomake_javascript_eslint_maker = {'args': ['-c .eslintrc']}
+    autocmd! FileType javascript.jsx let b:neomake_javascript_eslint_maker = {'args': ['-c .eslintrc-jsx']}
 
 " Thrift better
   Plug 'solarnz/thrift.vim'
@@ -172,7 +201,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-fugitive'
 
 " Colorscheme
-  Plug 'yosiat/oceanic-next-vim'
+  Plug 'mhartington/oceanic-next'
 
 " autoread files
   Plug 'djoshea/vim-autoread'
@@ -186,17 +215,53 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Search through multiple files
   Plug 'mileszs/ack.vim'
-
   " Ack -> Ag
-  if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-  endif
-  cnoreabbrev ag Ack
-  cnoreabbrev aG Ack
-  cnoreabbrev Ag Ack
-  cnoreabbrev AG Ack
+    if executable('ag')
+      let g:ackprg = 'ag --vimgrep'
+    endif
+    cnoreabbrev ag Ack
+    cnoreabbrev aG Ack
+    cnoreabbrev Ag Ack
+    cnoreabbrev AG Ack
 
 call plug#end()
 
-colorscheme OceanicNext
+" Colorscheme
+ " Theme
+  syntax enable
+  set t_Co=256
+  colorscheme OceanicNext
+  set background=dark
+  let g:airline_theme='oceanicnext'
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+
+" Ultisnips
+" default dir
+" autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" Configuration for custom snips
+let g:UltiSnipsSnippetsDir = "~/dotfiles"
+let g:UltiSnipsSnippetDirectories = ["UltiSnips", "snips"]
+
+" Trigger configuration.
+let g:UltiSnipsExpandTrigger = "<F6>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit='vertical'
+
+" Use Python Version
+let g:UltiSnipsUsePythonVersion = 3
+
+let g:ultisnips_python_style="google"
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif

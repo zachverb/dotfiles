@@ -176,6 +176,7 @@ let g:UltiSnipsUsePythonVersion = 2
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ["~/dotfiles/UltiSnips", "~/.vim/UltiSnips"]
 
 " YCM
 let g:ycm_autoclose_preview_window_after_insertion = 1

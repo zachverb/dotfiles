@@ -38,6 +38,7 @@ Plug 'christoomey/vim-tmux-navigator'
   
 Plug 'yosiat/oceanic-next-vim'
 Plug 'chriskempson/base16-vim'
+
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'djoshea/vim-autoread'
 Plug 'tpope/vim-fugitive'
@@ -109,7 +110,6 @@ let g:NERDSpaceDelims = 1
 
 
 " Column for max line length
-set colorcolumn=120
 
 " Visual Customization
 set t_Co=256
@@ -176,6 +176,7 @@ let g:UltiSnipsUsePythonVersion = 2
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ["~/dotfiles/UltiSnips", "~/.vim/UltiSnips"]
 
 " YCM
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -202,10 +203,10 @@ map <C-i><C-t> :GoTest<CR>"
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-cnoreabbrev ag Ack                                                                           
-cnoreabbrev aG Ack                                                                           
-cnoreabbrev Ag Ack                                                                           
-cnoreabbrev AG Ack  
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
 
 " airline
 let g:airline#extensions#tabline#enabled = 2

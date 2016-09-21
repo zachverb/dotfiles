@@ -210,7 +210,7 @@ def convertToDash(name):
 snip.rv = convertToDash(t[1])`');
 endsnippet
 
-snippet reqes6
+snippet reqes6 "require es6" i
 var ${1:module} = require('${2:path}/`!p
 def convertToDash(name):
 	s1 = re.sub('(.)([A-Z][a-z]+)', r'\1-\2', name)
@@ -239,3 +239,10 @@ if (env === 'development') {
 	require('../test/server/fixtures/fake-clients')(server);
 }
 endsnippet
+
+
+#
+# JSDOC
+#
+
+

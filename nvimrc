@@ -101,6 +101,7 @@
       Plug 'ervandew/supertab'
       let g:SuperTabDefaultCompletionType = "<c-n>" " Make the tabing on completion menu go from top to bottom
       let g:SuperTabClosePreviewOnPopupClose = 1 " Close the preview when completion ends
+      Plug 'digitaltoad/vim-pug'
 
     " Snippets
       " Sleuth - automatically figure out indent

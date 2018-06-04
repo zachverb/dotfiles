@@ -49,6 +49,7 @@
     set backupdir=$TMPDIR// " store swp files and temp files in system tmpdir
     set directory=$TMPDIR//
     set colorcolumn=120     " Column for max line length
+
   " whitespace
     if &listchars ==# 'eol:$'
       set listchars=trail:-,extends:>,precedes:<,nbsp:+
@@ -194,6 +195,7 @@
       Plug 'pangloss/vim-javascript'
       let g:javascript_plugin_jsdoc = 1
       Plug 'mxw/vim-jsx'
+      let g:jsx_ext_required = 0 
       Plug 'elzr/vim-json'
       Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] , 'do': 'npm i' }
       Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
@@ -275,5 +277,4 @@
     if (has("termguicolors"))
       set termguicolors
     endif
-
 

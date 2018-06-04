@@ -62,7 +62,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
-" fix backspace
+
 set backspace=2
 
 " line nums
@@ -90,7 +90,7 @@ noremap   <Right>  <NOP>
 let mapleader = "\<Space>"
 
 " Allow JSX in normal JS files
-let g:jsx_ext_required = 1
+let g:jsx_ext_required = 0
 
 " NerdTree bind
 map <C-n> :NERDTreeTabsToggle<CR>

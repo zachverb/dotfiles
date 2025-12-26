@@ -3,7 +3,6 @@ export ZSH=~/.oh-my-zsh
 export PATH=$(brew --prefix)/sbin:$(brew --prefix)/bin:$PATH:$HOME/bin
 alias tmux='tmux -2'  # for 256color
 alias tmux='tmux -u'  # to get rid of unicode rendering problem
-alias sublime="open -a 'Sublime Text'"
 alias n="nvim"
 
 # Set name of the theme to load.
@@ -59,7 +58,7 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx vi-mode tmux)
+plugins=(git vi-mode tmux)
 
 # User configuration
 
@@ -101,3 +100,10 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export SSL_CERT_FILE="$(brew --prefix openssl@3)"/cert.pem
+
+source <(fzf --zsh)
+
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

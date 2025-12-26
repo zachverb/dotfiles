@@ -1,7 +1,7 @@
 #! /bin/bash
 BACKUP_OLD_DOT_FILES_FOLDER=~/olddotfiles
 DOT_FILES_FOLDER="~/dotfiles"
-DOT_FILES_AND_FOLDERS="gitconfig vimrc tmux.conf zshrc zshrc_local oh-my-zsh nvimrc"
+DOT_FILES_AND_FOLDERS="gitconfig vimrc tmux.conf zshrc zshrc_local oh-my-zsh nvimrc nvim"
 
 echo "Backing up old dot files in $BACKUP_OLD_DOT_FILES_FOLDER"
 mkdir "$BACKUP_OLD_DOT_FILES_FOLDER"
@@ -20,6 +20,6 @@ do
   eval $sym_link_cmd
 done
 
-echo "Symlinking nvimrc"
-sym_link_nvim_cmd="ln -vs ~/.nvimrc ~/.config/nvim/init.vim"
+echo "Symlinking nvim"
+sym_link_nvim_cmd="ln -vs ./nvim ~/.config"
 eval $sym_link_nvim_cmd

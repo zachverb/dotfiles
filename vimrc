@@ -4,48 +4,48 @@ filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 " Language specific
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 
 "" Javascript
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'bentayloruk/vim-react-es6-snippets'
-Plug 'moll/vim-node'
+" Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+" Plug 'bentayloruk/vim-react-es6-snippets'
+" Plug 'moll/vim-node'
 
-"" Go
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" "" Go
+" Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
-" Thrift
-Plug 'solarnz/thrift.vim'
+" " Thrift
+" Plug 'solarnz/thrift.vim'
 
-" workflow specific
-Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'mileszs/ack.vim'
-Plug 'christoomey/vim-sort-motion'
+" " workflow specific
+" Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdcommenter'
+" Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'mileszs/ack.vim'
+" Plug 'christoomey/vim-sort-motion'
 
-" snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
+" " snippets
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+" Plug 'ervandew/supertab'
 
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
   
-Plug 'yosiat/oceanic-next-vim'
-Plug 'chriskempson/base16-vim'
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'djoshea/vim-autoread'
-Plug 'tpope/vim-fugitive'
-Plug 'terryma/vim-expand-region'
-Plug 'bling/vim-airline'
-Plug 'tpope/vim-surround'
+" Plug 'yosiat/oceanic-next-vim'
+" Plug 'chriskempson/base16-vim'
+" Plug 'othree/yajs.vim', { 'for': 'javascript' }
+" Plug 'djoshea/vim-autoread'
+" Plug 'tpope/vim-fugitive'
+" Plug 'terryma/vim-expand-region'
+" Plug 'bling/vim-airline'
+" Plug 'tpope/vim-surround'
 
-Plug 'lfilho/cosco.vim'
+" Plug 'lfilho/cosco.vim'
 
 " All of your Plugs must be added before the following line
 call plug#end()

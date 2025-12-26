@@ -40,6 +40,7 @@ set nohlsearch          " Don't highlight the search
 set incsearch
 set backupdir=$TMPDIR// " store swp files and temp files in system tmpdir
 set directory=$TMPDIR//
+set modifiable
 
 if &listchars ==# 'eol:$'
   set listchars=trail:-,extends:>,precedes:<,nbsp:+
